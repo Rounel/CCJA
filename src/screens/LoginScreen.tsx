@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import { LoginCredentials, AuthProvider } from '../types/auth.types';
 import { useNavigation } from '../navigation/SimpleNavigator';
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+
 
 export default function LoginScreen() {
   const { navigate } = useNavigation();
@@ -125,10 +127,10 @@ export default function LoginScreen() {
     <ScrollView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Connexion</Text>
-        <Text style={styles.subtitle}>Bienvenue sur l'application de gestion de communauté</Text>
+        <Text style={styles.subtitle}>Bienvenue sur l'application du CCJA !!!</Text>
 
         {/* Méthodes d'authentification */}
-        <View style={styles.methodSelector}>
+        {/* <View style={styles.methodSelector}>
           <TouchableOpacity
             style={[styles.methodButton, authMethod === 'email' && styles.methodButtonActive]}
             onPress={() => {
@@ -152,7 +154,7 @@ export default function LoginScreen() {
               Téléphone
             </Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
         {/* Formulaire de connexion */}
         {authMethod === 'email' && renderEmailLogin()}
@@ -167,11 +169,17 @@ export default function LoginScreen() {
 
         {/* Connexions sociales */}
         <TouchableOpacity style={styles.socialButton} onPress={handleGoogleLogin}>
-          <Text style={styles.socialButtonText}>Continuer avec Google</Text>
+          <View style={styles.socialButtonContent}>
+            <FontAwesome6 name="google" size={24} color="white" />
+            <Text style={styles.socialButtonText}>Continuer avec Google</Text>
+          </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.socialButton, styles.linkedInButton]} onPress={handleLinkedInLogin}>
-          <Text style={styles.socialButtonText}>Continuer avec LinkedIn</Text>
+        <TouchableOpacity style={[styles.socialButton]} onPress={handleLinkedInLogin}>
+          <View style={styles.socialButtonContent}>
+            <FontAwesome6 name="linkedin" size={24} color="white" />
+            <Text style={[styles.socialButtonText, styles.linkedInButtonText]}>Continuer avec LinkedIn</Text>
+          </View>
         </TouchableOpacity>
 
         {/* Lien vers inscription */}
@@ -198,7 +206,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     marginBottom: 8,
-    color: '#1a1a1a',
+    color: '#012C5F',
   },
   subtitle: {
     fontSize: 16,
@@ -208,7 +216,7 @@ const styles = StyleSheet.create({
   methodSelector: {
     flexDirection: 'row',
     marginBottom: 24,
-    borderRadius: 12,
+    borderRadius: 100,
     backgroundColor: '#f5f5f5',
     padding: 4,
   },
@@ -216,10 +224,10 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 12,
     alignItems: 'center',
-    borderRadius: 8,
+    borderRadius: 100,
   },
   methodButtonActive: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#bbc4cddb',
   },
   methodButtonText: {
     fontSize: 16,
@@ -240,16 +248,16 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#f9f9f988',
     borderRadius: 12,
     padding: 16,
     fontSize: 16,
     marginBottom: 16,
-    backgroundColor: '#fff',
+    backgroundColor: '#f9f9f9',
   },
   primaryButton: {
-    backgroundColor: '#007AFF',
-    borderRadius: 12,
+    backgroundColor: '#FA771D',
+    borderRadius: 100,
     padding: 16,
     alignItems: 'center',
     marginTop: 8,
@@ -279,9 +287,44 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     borderRadius: 12,
     padding: 16,
-    alignItems: 'center',
     marginBottom: 12,
+    backgroundColor: '#388D7A',
+    color: '#fff',
+  },
+  socialButtonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    color: '#fff',
+  },
+  googleLogo: {
+    width: 24,
+    height: 24,
+    borderRadius: 4,
+    backgroundColor: '#4285F4',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  googleLogoText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  linkedInLogo: {
+    width: 24,
+    height: 24,
+    borderRadius: 4,
     backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  linkedInLogoText: {
+    color: '#0077B5',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
   linkedInButton: {
     backgroundColor: '#0077B5',
@@ -290,7 +333,10 @@ const styles = StyleSheet.create({
   socialButtonText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#1a1a1a',
+    color: '#fff',
+  },
+  linkedInButtonText: {
+    color: '#fff',
   },
   signUpLink: {
     textAlign: 'center',
